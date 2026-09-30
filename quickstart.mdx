@@ -1,5 +1,5 @@
 ---
-title: "Get Started with Nexa in Minutes"
+title: "Nexa Quick Start: Connect, Verify, and Process Commands"
 sidebarTitle: "Quick Start"
 description: "Connect your Perfect Panel API, add a WhatsApp or Telegram channel, link a customer, and process your first automated order command in under 10 minutes."
 ---
@@ -23,7 +23,7 @@ This guide walks you through everything you need to do to go from a fresh Nexa S
     3. Paste your Perfect Panel **Admin API Key**.
     4. Click **Save & Test**. Nexa will make a test call to confirm the credentials are valid.
 
-    ```
+    ```text
     Base URL : https://panel.yourdomain.com
     API Key  : sk_live_xxxxxxxxxxxxxxxx
     ```
@@ -72,13 +72,13 @@ This guide walks you through everything you need to do to go from a fresh Nexa S
     With the channel active and a customer linked, send a test command from the verified number to your channel.
 
     **Example — refill request:**
-    ```
+    ```text
     refill order 123
     ```
 
-    **Example — cancel request:**
-    ```
-    cancel order 456
+    **Example — speed up request:**
+    ```text
+    speed up 123
     ```
 
     Nexa will:
@@ -88,10 +88,14 @@ This guide walks you through everything you need to do to go from a fresh Nexa S
     4. Reply to the customer with a confirmation message.
 
     **Example bot reply:**
-    ```
+    ```text
     ✅ Refill submitted for order #123 (Instagram Followers – 500).
     Your order is now in the refill queue.
     ```
+
+    <Note>
+      The `cancel` command is planned but not yet live. Testing refill and speed up commands covers the currently active functionality.
+    </Note>
 
     <Tip>
       Test with an order that is in **Completed** or **Partial** status — those are the statuses Perfect Panel accepts for refill requests. Testing against an active or pending order will return an expected denial, which is also a useful thing to verify is working correctly.

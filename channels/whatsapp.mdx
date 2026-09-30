@@ -1,10 +1,10 @@
 ---
-title: "Connect a WhatsApp Channel to Your Nexa Space"
+title: "How to Set Up a WhatsApp Channel in Your Nexa Space"
 sidebarTitle: "WhatsApp"
 description: "Step-by-step guide to linking a WhatsApp number to Nexa via QR code, maintaining session stability, and setting up Support Groups for providers."
 ---
 
-Nexa connects to WhatsApp using the **Baileys** library, which establishes a persistent web session tied to a real WhatsApp account. When you scan the QR code in the Nexa dashboard, your phone authenticates the session exactly as it would for WhatsApp Web — from that point on, Nexa can send and receive messages on behalf of that number without any further action from you. This makes WhatsApp one of the fastest channels to get running, requiring only a phone with WhatsApp installed and a stable internet connection.
+Nexa connects to WhatsApp by establishing a persistent web session tied to a real WhatsApp account. When you scan the QR code in the Nexa dashboard, your phone authenticates the session exactly as it would for WhatsApp Web — from that point on, Nexa can send and receive messages on behalf of that number without any further action from you. This makes WhatsApp one of the fastest channels to get running, requiring only a phone with WhatsApp installed and a stable internet connection.
 
 <Warning>
   Do **not** connect your primary personal or business WhatsApp number. Automation activity can trigger WhatsApp's anti-spam systems, which may result in a temporary or permanent ban on the account. Use a **dedicated number** reserved exclusively for Nexa.
@@ -31,7 +31,7 @@ Nexa connects to WhatsApp using the **Baileys** library, which establishes a per
 </Steps>
 
 <Tip>
-  Keep the phone that hosts the WhatsApp account **powered on, charged, and connected to the internet** at all times. Baileys sessions are tied to the phone's connection — extended offline periods cause the session to expire, requiring a new QR scan.
+  Keep the phone that hosts the WhatsApp account **powered on, charged, and connected to the internet** at all times. The WhatsApp session is tied to the phone's connection — extended offline periods cause the session to expire, requiring a new QR scan.
 </Tip>
 
 ## Session Persistence and Reconnection

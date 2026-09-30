@@ -1,14 +1,14 @@
 ---
 title: "Refill Command: Request a Refill on a Completed Order"
 sidebarTitle: "Refill"
-description: "Use the refill command to ask Nexa to notify your provider and trigger a refill on any completed Perfect Panel order."
+description: "Use the refill command to ask Nexa to notify your provider and trigger a refill on any completed Perfect Panel order — no support ticket needed."
 ---
 
 The `refill order` command lets a verified customer request a refill on a completed order directly from WhatsApp or Telegram. Nexa verifies that the sender owns the order, then notifies the provider — either via the configured WhatsApp support group or via a direct message — so no manual support ticket is needed.
 
 ## Syntax
 
-```
+```text
 refill order <ID>
 ```
 
@@ -16,7 +16,7 @@ Replace `<ID>` with the numeric order ID from your Perfect Panel dashboard.
 
 **Example:**
 
-```
+```text
 refill order 5381
 ```
 
@@ -28,7 +28,7 @@ refill order 5381
 
 The following shows what a typical refill request looks like in the bot conversation.
 
-```
+```text
 Customer: refill order 5381
 
 Nexa Bot: ✅ Refill requested for order #5381. Your provider has been notified
@@ -53,7 +53,7 @@ If Nexa cannot process the command, it replies with a specific error message so 
   <Accordion title="Order not found">
     Nexa could not locate an order with that ID in Perfect Panel.
 
-    ```
+    ```text
     Customer: refill order 9999
 
     Nexa Bot: ❌ We couldn't find order #9999 in your account. Please double-check
@@ -64,7 +64,7 @@ If Nexa cannot process the command, it replies with a specific error message so 
   <Accordion title="Order is not completed">
     The refill command only works on completed orders. If the order is still active, partial, or in another non-completed state, Nexa rejects the request.
 
-    ```
+    ```text
     Customer: refill order 5381
 
     Nexa Bot: ❌ Order #5381 is not completed yet, so a refill cannot be requested
@@ -75,7 +75,7 @@ If Nexa cannot process the command, it replies with a specific error message so 
   <Accordion title="Ownership mismatch">
     The order ID exists in Perfect Panel, but it does not belong to the verified username linked to this WhatsApp or Telegram number.
 
-    ```
+    ```text
     Customer: refill order 5381
 
     Nexa Bot: ❌ You don't have permission to manage order #5381. Please make sure

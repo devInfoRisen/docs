@@ -28,10 +28,10 @@ If you're just getting started with Nexa or exploring what the platform can do, 
 
     | Command | What it does |
     |---|---|
-    | `refill order <ID>` | Requests a refill for a completed order |
-    | `partial order <ID>` | Requests a partial refill for an eligible order |
-    | `speed up <ID>` | Requests a speed increase for an active order |
-    | `cancel order <ID>` | Requests cancellation of an eligible order |
+    | `refill order <ID>` | Requests a refill for a completed order; your provider is notified |
+    | `partial order <ID>` | Returns a delivery estimate for a partial order (no action taken — MVP) |
+    | `speed up <ID>` | Notifies your provider for active orders; returns an estimate for partial orders |
+    | `cancel order <ID>` | *(Coming soon — not yet available)* |
 
     All commands are subject to ownership verification before they are processed.
   </Accordion>
@@ -57,7 +57,7 @@ If you're just getting started with Nexa or exploring what the platform can do, 
   </Accordion>
 
   <Accordion title="What is the cancel command status?">
-    When a customer sends `cancel order <ID>`, Nexa forwards the cancellation request to Perfect Panel. The outcome depends on the order's current status in Perfect Panel — not every order is eligible for cancellation. If the order cannot be cancelled (for example, because it's already completed or too far into processing), Nexa replies to the customer explaining that the order is not eligible.
+    The `cancel order <ID>` command is **planned but not yet live**. Customers who send it will receive a message indicating that cancellation is not currently available. Once the feature ships, it will follow the same ownership verification process as all other commands and will forward eligible cancellation requests to Perfect Panel on the customer's behalf.
   </Accordion>
 
   <Accordion title="How does the AI support module work?">

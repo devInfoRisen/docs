@@ -1,5 +1,5 @@
 ---
-title: "Connect a Telegram Bot Channel to Your Nexa Space"
+title: "Connecting a Telegram Bot Channel to Your Nexa Space"
 sidebarTitle: "Telegram"
 description: "Create a Telegram bot via BotFather, paste the token into Nexa, and let Nexa register the webhook automatically to start processing commands."
 ---
@@ -18,7 +18,7 @@ Telegram Channels in Nexa are powered by the official **Telegram Bot API**. You 
   <Step title="Copy the bot token">
     BotFather replies with a message containing your bot token in this format:
 
-    ```
+    ```text
     123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ
     ```
 
@@ -70,13 +70,13 @@ Telegram lets you register a list of commands that appear as suggestions when a 
 
 To set commands, send the following to @BotFather:
 
-```
+```text
 /setcommands
 ```
 
 BotFather will ask which bot you want to update, then prompt you to send the command list. Enter one command per line in the format `command - description`:
 
-```
+```text
 refill - Refill an existing order
 speedup - Speed up an existing order
 status - Check the status of an order
@@ -89,3 +89,17 @@ BotFather confirms the update immediately, and the command hints appear for all 
 <Warning>
   If you regenerate the bot token in BotFather (e.g. for security reasons), the old token becomes invalid and Nexa's webhook registration will fail. Return to the Channel settings in Nexa, delete the existing Telegram Channel, and add it again with the new token.
 </Warning>
+
+## Telegram Webhook Endpoint
+
+When you connect a Telegram Channel, Nexa automatically registers a webhook with the Telegram Bot API so that incoming messages are pushed to your Space in real time. The webhook URL that Nexa registers follows this format:
+
+```text
+https://app.nexabot.io/webhooks/telegram/{channel-id}
+```
+
+You do not need to register or manage this URL yourself — Nexa handles it on connection and deregisters it when you remove the Channel. If you ever need to inspect or manually re-register the webhook (for example, after a domain change), open the Channel's detail view in Nexa and click **Re-register Webhook**.
+
+<Info>
+  Each Telegram Channel in your Space has its own unique webhook URL derived from its Channel ID. Multiple Telegram Channels in the same Space each receive messages independently on their own endpoint.
+</Info>

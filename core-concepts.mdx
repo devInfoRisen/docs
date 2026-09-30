@@ -16,7 +16,7 @@ When you log in to Nexa, you're always working inside your own Space. There is n
 
 A **Channel** is a connected WhatsApp or Telegram account that your customers send messages to. Channels are the entry points for all customer commands.
 
-- **WhatsApp channels** are connected by scanning a QR code with a phone running WhatsApp (powered by Baileys under the hood).
+- **WhatsApp channels** are connected by scanning a QR code with a phone running WhatsApp.
 - **Telegram channels** are connected by supplying a bot token from @BotFather; Nexa registers the webhook automatically.
 
 You can connect multiple channels to a single Space — for example, a dedicated WhatsApp number for orders and a Telegram bot for VIP customers.
@@ -35,10 +35,10 @@ The four actions Nexa can take on an order are:
 
 | Action | Command syntax | What it does |
 |---|---|---|
-| Refill | `refill order <id>` | Submits a refill request for a completed or partial order |
-| Partial | `partial order <id>` | Marks a partial delivery as acceptable and closes the order |
-| Speed up | `speed up order <id>` | Requests expedited processing from the provider |
-| Cancel | `cancel order <id>` | Cancels an eligible order and triggers a refund where applicable |
+| Refill | `refill order <id>` | Submits a refill request for a completed or partial order; provider is notified |
+| Partial | `partial order <id>` | Returns a delivery estimate only — no action is taken on the order (MVP) |
+| Speed up | `speed up <id>` | Active orders: notifies the provider to expedite; partial orders: returns an estimate |
+| Cancel | `cancel order <id>` | Cancels an eligible order — **planned, not yet live** |
 
 ## Providers
 

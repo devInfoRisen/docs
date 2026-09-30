@@ -8,7 +8,7 @@ The `partial order` command gives a verified customer a snapshot of how much of 
 
 ## Syntax
 
-```
+```text
 partial order <ID>
 ```
 
@@ -16,7 +16,7 @@ Replace `<ID>` with the numeric order ID from your Perfect Panel dashboard.
 
 **Example:**
 
-```
+```text
 partial order 5381
 ```
 
@@ -24,16 +24,16 @@ partial order 5381
 
 The following shows what a typical partial inquiry looks like in the bot conversation.
 
-```
+```text
 Customer: partial order 5381
 
 Nexa Bot: 📊 Order #5381 partial update: approximately 3,200 out of 5,000 units
           have been delivered so far (≈64%). Delivery is still in progress.
 ```
 
-<Note>
-  **MVP behaviour:** In the current release, the `partial order` command returns an estimate only. Nexa reads the delivery data from Perfect Panel and reports it back to the customer, but does **not** contact the provider or trigger any action. Full partial-fill automation — where Nexa can instruct the provider to top up a partially delivered order — is planned for a future release.
-</Note>
+<Warning>
+  **MVP behaviour — estimate only.** In the current release, the `partial order` command returns an estimate only. Nexa reads the delivery data from Perfect Panel and reports it back to the customer, but does **not** contact the provider or trigger any action. Full partial-fill automation — where Nexa can instruct the provider to top up a partially delivered order — is planned for a future release.
+</Warning>
 
 ## What Happens Next
 
@@ -51,7 +51,7 @@ If Nexa cannot process the command, it replies with a specific error message.
   <Accordion title="Order not found">
     Nexa could not locate an order with that ID linked to the verified account.
 
-    ```
+    ```text
     Customer: partial order 9999
 
     Nexa Bot: ❌ We couldn't find order #9999 in your account. Please double-check
@@ -62,7 +62,7 @@ If Nexa cannot process the command, it replies with a specific error message.
   <Accordion title="Ownership mismatch">
     The order exists in Perfect Panel but does not belong to the username linked to this WhatsApp or Telegram number.
 
-    ```
+    ```text
     Customer: partial order 5381
 
     Nexa Bot: ❌ You don't have permission to view order #5381. Please make sure

@@ -8,7 +8,7 @@ The `speed up` command lets a verified customer ask Nexa to accelerate delivery 
 
 ## Syntax
 
-```
+```text
 speed up <ID>
 ```
 
@@ -16,7 +16,7 @@ Replace `<ID>` with the numeric order ID from your Perfect Panel dashboard.
 
 **Example:**
 
-```
+```text
 speed up 5381
 ```
 
@@ -28,7 +28,7 @@ speed up 5381
 
     **Example chat exchange:**
 
-    ```
+    ```text
     Customer: speed up 5381
 
     Nexa Bot: ⚡ Speed-up request sent for order #5381. Your provider has been
@@ -42,7 +42,7 @@ speed up 5381
 
     **Example chat exchange:**
 
-    ```
+    ```text
     Customer: speed up 5381
 
     Nexa Bot: 📊 Order #5381 is currently partial. Approximately 3,200 out of
@@ -64,7 +64,7 @@ If Nexa cannot process the command, it replies with a specific error message.
   <Accordion title="Order not found">
     Nexa could not locate an order with that ID linked to the verified account.
 
-    ```
+    ```text
     Customer: speed up 9999
 
     Nexa Bot: ❌ We couldn't find order #9999 in your account. Please double-check
@@ -75,7 +75,7 @@ If Nexa cannot process the command, it replies with a specific error message.
   <Accordion title="Wrong order status">
     The speed up command only applies to active or partial orders. Completed, cancelled, or pending orders are not eligible.
 
-    ```
+    ```text
     Customer: speed up 5381
 
     Nexa Bot: ❌ Order #5381 can't be sped up because its current status doesn't
@@ -87,7 +87,7 @@ If Nexa cannot process the command, it replies with a specific error message.
   <Accordion title="Ownership mismatch">
     The order exists in Perfect Panel but does not belong to the username linked to this WhatsApp or Telegram number.
 
-    ```
+    ```text
     Customer: speed up 5381
 
     Nexa Bot: ❌ You don't have permission to manage order #5381. Please make sure
