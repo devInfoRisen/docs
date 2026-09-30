@@ -1,0 +1,72 @@
+---
+title: "Connecting Channels: WhatsApp and Telegram for Nexa"
+sidebarTitle: "Overview"
+description: "Learn what Channels are in Nexa, how to connect WhatsApp and Telegram accounts, and how to manage them across your Space effectively."
+---
+
+A **Channel** is a connected messaging account — either a WhatsApp number or a Telegram bot — through which your customers send automation commands and receive replies. Every message that Nexa processes flows through a Channel: when a customer sends `refill order 123` in a chat, Nexa receives that message via the Channel, verifies ownership with Perfect Panel, executes the action, and responds — all without manual intervention. Connecting at least one Channel is the first step to putting Nexa to work for your SMM panel.
+
+## Supported Channel Types
+
+Nexa supports two messaging platforms. Choose the one that best fits your customer base, or connect both to maximise reach.
+
+<CardGroup cols={2}>
+  <Card
+    title="WhatsApp"
+    icon="whatsapp"
+    href="/channels/whatsapp"
+  >
+    Connect a WhatsApp number by scanning a QR code. Nexa uses the Baileys library to maintain a persistent session so your customers can message you directly.
+  </Card>
+  <Card
+    title="Telegram"
+    icon="telegram"
+    href="/channels/telegram"
+  >
+    Connect a Telegram bot using a token from @BotFather. Nexa automatically registers the webhook so commands reach your Space instantly.
+  </Card>
+</CardGroup>
+
+## Multiple Channels per Space
+
+Each Nexa Space supports **multiple Channels at the same time**. You can, for example, run one WhatsApp number for your English-speaking customers and a separate Telegram bot for a different market — both feeding into the same Space, the same automation rules, and the same Perfect Panel integration. Add as many Channels as your operation requires; there is no fixed limit imposed by Nexa itself.
+
+## Managing Your Channels
+
+After you connect a Channel, you can monitor and control it from the **Channels** section of your Space dashboard.
+
+### Viewing Channel Status
+
+Each Channel card displays a live status badge:
+
+| Status | Meaning |
+|--------|---------|
+| **Active** | The Channel is connected and processing messages normally. |
+| **Inactive** | The Channel is connected but has been disabled; messages are not processed. |
+| **Disconnected** | The session has dropped (WhatsApp) or the webhook is unreachable (Telegram); reconnection is required. |
+
+### Enabling and Disabling a Channel
+
+Toggle a Channel between Active and Inactive without fully removing it. This is useful when you want to pause a number for maintenance or seasonal downtime without losing its configuration.
+
+<Steps>
+  <Step title="Open the Channel list">
+    In your Space, navigate to **Channels** in the left sidebar.
+  </Step>
+  <Step title="Locate the Channel">
+    Find the Channel you want to enable or disable.
+  </Step>
+  <Step title="Toggle the status switch">
+    Click the **Active / Inactive** toggle on the Channel card. The status badge updates immediately.
+  </Step>
+</Steps>
+
+### Disconnecting a Channel
+
+Disconnecting permanently removes the Channel's session or webhook registration from Nexa. The messaging account itself (your phone number or Telegram bot) is unaffected.
+
+<Warning>
+  Disconnecting a Channel stops all message processing for that account immediately. Customers who message it will receive no automated response until you reconnect.
+</Warning>
+
+To disconnect, open the Channel's detail view and click **Disconnect Channel**, then confirm the prompt. You can reconnect the same account as a new Channel at any time.

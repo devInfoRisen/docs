@@ -1,0 +1,72 @@
+---
+title: "Partial Command: Get a Partial Fill Estimate for Orders"
+sidebarTitle: "Partial"
+description: "Use the partial command to check how much of an in-progress order has been delivered so far. Returns an estimate — no provider action is taken."
+---
+
+The `partial order` command gives a verified customer a snapshot of how much of their order has been delivered at the time they ask. In the current release, Nexa returns an estimate based on the data available in Perfect Panel — no request is forwarded to the provider and no action is triggered. This makes it a quick, low-friction way for customers to self-serve a delivery update without opening a support conversation.
+
+## Syntax
+
+```
+partial order <ID>
+```
+
+Replace `<ID>` with the numeric order ID from your Perfect Panel dashboard.
+
+**Example:**
+
+```
+partial order 5381
+```
+
+## Example Chat Exchange
+
+The following shows what a typical partial inquiry looks like in the bot conversation.
+
+```
+Customer: partial order 5381
+
+Nexa Bot: 📊 Order #5381 partial update: approximately 3,200 out of 5,000 units
+          have been delivered so far (≈64%). Delivery is still in progress.
+```
+
+<Note>
+  **MVP behaviour:** In the current release, the `partial order` command returns an estimate only. Nexa reads the delivery data from Perfect Panel and reports it back to the customer, but does **not** contact the provider or trigger any action. Full partial-fill automation — where Nexa can instruct the provider to top up a partially delivered order — is planned for a future release.
+</Note>
+
+## What Happens Next
+
+After a successful partial command, the customer receives the estimate in the same chat. No further steps are taken on their behalf. If the delivery progress looks stalled, the customer should contact support directly or wait for the planned automated partial-fill feature.
+
+## Future Release
+
+Full partial-fill automation is on the Nexa roadmap. When it ships, the `partial order` command will move beyond estimates and allow Nexa to communicate directly with the provider to request a top-up on under-delivered orders. Watch the changelog for updates.
+
+## Error Cases
+
+If Nexa cannot process the command, it replies with a specific error message.
+
+<AccordionGroup>
+  <Accordion title="Order not found">
+    Nexa could not locate an order with that ID linked to the verified account.
+
+    ```
+    Customer: partial order 9999
+
+    Nexa Bot: ❌ We couldn't find order #9999 in your account. Please double-check
+              the order ID and try again.
+    ```
+  </Accordion>
+
+  <Accordion title="Ownership mismatch">
+    The order exists in Perfect Panel but does not belong to the username linked to this WhatsApp or Telegram number.
+
+    ```
+    Customer: partial order 5381
+
+    Nexa Bot: ❌ You don't have permission to view order #5381. Please make sure
+              you're using the account linked to this number.
+    ```
+  </Accordion>
+</AccordionGroup>

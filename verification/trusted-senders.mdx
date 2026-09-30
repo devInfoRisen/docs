@@ -1,0 +1,62 @@
+---
+title: 'Trusted Senders: Elevated Access for Specific Numbers'
+sidebarTitle: 'Trusted Senders'
+description: 'Create a whitelist of phone numbers with elevated bot permissions — for your own number, VIP customers, or internal team members.'
+---
+
+Trusted Senders is a whitelist of phone numbers that you grant elevated permissions within Nexa. While regular verified customers can only interact with the bot in relation to their own orders, trusted senders can access additional capabilities — such as admin-level commands — that aren't available to the general customer base. Use this feature for your own number, members of your internal team, or high-value customers who need extended access.
+
+## Who Should Be a Trusted Sender?
+
+Trusted sender status is intended for a small number of phone numbers where you have complete confidence in the owner. Typical use cases include:
+
+<CardGroup cols={3}>
+  <Card title="Your Own Number" icon="user-shield">
+    Add your own WhatsApp or Telegram number to interact with the bot using admin commands without going through the standard customer flow.
+  </Card>
+  <Card title="Internal Team Members" icon="users">
+    Give staff or co-operators elevated access so they can monitor orders, run diagnostics, or manage bot interactions on your behalf.
+  </Card>
+  <Card title="VIP Customers" icon="star">
+    Grant select high-value customers access to additional commands or faster response handling beyond what standard customers receive.
+  </Card>
+</CardGroup>
+
+## Add a Trusted Sender
+
+<Steps>
+  <Step title="Open Trusted Senders">
+    In the Nexa dashboard, navigate to **Trusted Senders** in the left sidebar.
+  </Step>
+  <Step title="Click Add Trusted Sender">
+    Click the **Add Trusted Sender** button to open the entry form.
+  </Step>
+  <Step title="Enter the phone number and a label">
+    Enter the phone number in international format (e.g. `+447911123456`) and give the entry a descriptive label — for example, `Owner`, `Support Team Lead`, or `VIP - Acme Corp`. The label is for your reference only and is not visible to the sender.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The number is now on the trusted senders whitelist and will receive elevated permissions the next time they message the bot.
+  </Step>
+</Steps>
+
+## What Elevated Permissions Mean
+
+Trusted senders can interact with the bot in ways that regular customers cannot. This may include:
+
+- Running **admin commands** to query order data across multiple accounts
+- Accessing **diagnostic or status commands** that give broader visibility into bot and panel activity
+- Bypassing certain rate limits or interaction restrictions that apply to the standard customer tier
+
+The exact set of available commands for trusted senders depends on how you have configured your Nexa instance. Check the Commands section of the documentation for a full breakdown of which commands require trusted sender status.
+
+## Remove or Edit a Trusted Sender
+
+To remove a trusted sender, find their entry in the **Trusted Senders** list and click **Delete**. Their number will revert to standard customer behaviour immediately. To update a label or phone number, open the entry and edit it directly, then save.
+
+<Warning>
+  Only add numbers you fully trust. Trusted senders have permissions that go beyond normal customer boundaries. Adding an incorrect or compromised number could give an unintended party access to sensitive bot capabilities and order data. Audit your trusted sender list regularly and remove any entries that are no longer needed.
+</Warning>
+
+<Info>
+  Adding a number to Trusted Senders does not automatically link it to a Perfect Panel username. If a trusted sender also needs to use standard order commands, add them as a customer in the **Customers** section as well.
+</Info>

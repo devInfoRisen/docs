@@ -1,0 +1,97 @@
+---
+title: "Speed Up Command: Accelerate an Active Order via Chat"
+sidebarTitle: "Speed Up"
+description: "Use the speed up command to ask Nexa to push the provider to accelerate an active order, or get a delivery estimate for a partial order."
+---
+
+The `speed up` command lets a verified customer ask Nexa to accelerate delivery on an order that hasn't finished yet. Nexa's response depends on the current status of the order: if the order is active, Nexa notifies the provider directly to speed up delivery; if the order is partial, Nexa returns a delivery estimate instead — the same estimate the `partial order` command provides. In both cases the customer gets an immediate reply in chat.
+
+## Syntax
+
+```
+speed up <ID>
+```
+
+Replace `<ID>` with the numeric order ID from your Perfect Panel dashboard.
+
+**Example:**
+
+```
+speed up 5381
+```
+
+## Behaviour by Order Status
+
+<Tabs>
+  <Tab title="Active Order">
+    When the order status in Perfect Panel is **active**, Nexa notifies the provider to increase the delivery speed. The provider receives the message through the configured WhatsApp support group or direct message channel.
+
+    **Example chat exchange:**
+
+    ```
+    Customer: speed up 5381
+
+    Nexa Bot: ⚡ Speed-up request sent for order #5381. Your provider has been
+              notified and will aim to accelerate delivery. You'll hear back
+              if anything changes.
+    ```
+  </Tab>
+
+  <Tab title="Partial Order">
+    When the order status in Perfect Panel is **partial** (some units delivered, delivery stalled or incomplete), Nexa returns a delivery estimate rather than contacting the provider. This mirrors the behaviour of the `partial order` command.
+
+    **Example chat exchange:**
+
+    ```
+    Customer: speed up 5381
+
+    Nexa Bot: 📊 Order #5381 is currently partial. Approximately 3,200 out of
+              5,000 units have been delivered (≈64%). Full speed-up automation
+              for partial orders is coming in a future release.
+    ```
+
+    <Note>
+      Automated speed-up actions for partial orders are planned for a future release. For now, Nexa returns an estimate so the customer has the latest delivery figures.
+    </Note>
+  </Tab>
+</Tabs>
+
+## Error Cases
+
+If Nexa cannot process the command, it replies with a specific error message.
+
+<AccordionGroup>
+  <Accordion title="Order not found">
+    Nexa could not locate an order with that ID linked to the verified account.
+
+    ```
+    Customer: speed up 9999
+
+    Nexa Bot: ❌ We couldn't find order #9999 in your account. Please double-check
+              the order ID and try again.
+    ```
+  </Accordion>
+
+  <Accordion title="Wrong order status">
+    The speed up command only applies to active or partial orders. Completed, cancelled, or pending orders are not eligible.
+
+    ```
+    Customer: speed up 5381
+
+    Nexa Bot: ❌ Order #5381 can't be sped up because its current status doesn't
+              support this action. Speed-up is only available for active or
+              partial orders.
+    ```
+  </Accordion>
+
+  <Accordion title="Ownership mismatch">
+    The order exists in Perfect Panel but does not belong to the username linked to this WhatsApp or Telegram number.
+
+    ```
+    Customer: speed up 5381
+
+    Nexa Bot: ❌ You don't have permission to manage order #5381. Please make sure
+              you're using the account linked to this number.
+    ```
+  </Accordion>
+</AccordionGroup>

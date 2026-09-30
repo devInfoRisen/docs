@@ -1,47 +1,119 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with Nexa in Minutes"
+sidebarTitle: "Quick Start"
+description: "Connect your Perfect Panel API, add a WhatsApp or Telegram channel, link a customer, and process your first automated order command in under 10 minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+This guide walks you through everything you need to do to go from a fresh Nexa Space to processing your first customer command. Follow the steps in order — each one builds on the last. By the end, a verified customer will be able to send a message like `refill order 123` and have Nexa act on it automatically, without any manual intervention from you.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Log in to your Nexa Space">
+    Open your Nexa dashboard at `https://app.nexa.app` and sign in with your operator credentials. After logging in you land on the **Dashboard**, which shows a live overview of messages, active channels, and recent activity.
 
-    ```bash
-    npm install your-package
-    ```
+    <Note>
+      Each operator account has exactly one Space. All channels, customers, and settings you configure are scoped to your Space and are not visible to other operators.
+    </Note>
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
 
-    ```bash
-    your-cli init
+  <Step title="Configure Panel API Settings">
+    Before Nexa can read or act on orders, it needs access to your Perfect Panel.
+
+    1. In the left sidebar, click **Panel API Settings**.
+    2. Enter your Perfect Panel **Base URL** (e.g. `https://panel.yourdomain.com`).
+    3. Paste your Perfect Panel **Admin API Key**.
+    4. Click **Save & Test**. Nexa will make a test call to confirm the credentials are valid.
+
     ```
+    Base URL : https://panel.yourdomain.com
+    API Key  : sk_live_xxxxxxxxxxxxxxxx
+    ```
+
+    <Warning>
+      Use your **Admin** API key, not a reseller or user key. Nexa needs admin-level access to look up order ownership and submit actions on behalf of customers.
+    </Warning>
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
 
-    ```bash
-    your-cli start
+  <Step title="Connect a Channel">
+    A Channel is the WhatsApp or Telegram account your customers will message. You need at least one before any commands can be received.
+
+    **WhatsApp (QR scan)**
+    1. Go to **Channels** → **Add Channel** → **WhatsApp**.
+    2. A QR code appears on screen.
+    3. On your WhatsApp phone, open **Linked Devices** → **Link a Device** and scan the QR.
+    4. Nexa confirms the connection and the channel status turns **Active**.
+
+    **Telegram (bot token)**
+    1. Go to **Channels** → **Add Channel** → **Telegram**.
+    2. Create a bot via [@BotFather](https://t.me/BotFather) and copy the token it provides.
+    3. Paste the token into Nexa and click **Connect**.
+    4. Nexa registers the webhook automatically and the channel status turns **Active**.
+
+    <Tip>
+      Give each channel a descriptive internal name (e.g. "Support WA +1 555 0100") so you can identify it quickly in the **Messages** and **Reports** views.
+    </Tip>
+  </Step>
+
+  <Step title="Link a customer account">
+    A Customer is a chat sender whose number has been verified against a panel username. Nexa won't process any command from an unverified number.
+
+    1. Go to **Customers** → **Add Customer**.
+    2. Enter the customer's **WhatsApp number** or **Telegram user ID**.
+    3. Enter their **Perfect Panel username**.
+    4. Click **Verify & Save**. Nexa calls your panel API to confirm the username exists, then saves the link.
+
+    Once saved, any message from that number that matches a command pattern will be processed as that panel username.
+
+    <Note>
+      If a customer messages you first, they'll appear in **Messages** with an "Unverified" badge. You can open their profile and complete the linking directly from there without re-entering their number.
+    </Note>
+  </Step>
+
+  <Step title="Test a command">
+    With the channel active and a customer linked, send a test command from the verified number to your channel.
+
+    **Example — refill request:**
     ```
+    refill order 123
+    ```
+
+    **Example — cancel request:**
+    ```
+    cancel order 456
+    ```
+
+    Nexa will:
+    1. Match the message to the `refill` command pattern.
+    2. Look up order `123` in Perfect Panel and confirm it belongs to the verified username.
+    3. Submit the refill action via the Admin API.
+    4. Reply to the customer with a confirmation message.
+
+    **Example bot reply:**
+    ```
+    ✅ Refill submitted for order #123 (Instagram Followers – 500).
+    Your order is now in the refill queue.
+    ```
+
+    <Tip>
+      Test with an order that is in **Completed** or **Partial** status — those are the statuses Perfect Panel accepts for refill requests. Testing against an active or pending order will return an expected denial, which is also a useful thing to verify is working correctly.
+    </Tip>
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What's next?
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+Now that you've processed your first command, explore the rest of the platform:
+
+<CardGroup cols={2}>
+  <Card title="All Commands" icon="message-bot" href="/commands/overview">
+    See the full list of commands customers can send, with syntax and examples.
+  </Card>
+  <Card title="Ownership & Verification" icon="shield-check" href="/verification/overview">
+    Understand the full verification flow and how to manage edge cases.
+  </Card>
+  <Card title="Trusted Senders" icon="user-check" href="/verification/trusted-senders">
+    Whitelist VIP customers or internal testers who bypass the standard command flow.
+  </Card>
+  <Card title="Providers" icon="truck" href="/panel/providers">
+    Configure upstream suppliers and their WhatsApp support groups.
+  </Card>
+</CardGroup>

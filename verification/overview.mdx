@@ -1,0 +1,67 @@
+---
+title: 'Ownership Verification: How Nexa Secures Commands'
+sidebarTitle: 'Overview'
+description: "Learn how Nexa verifies every command using a two-step ownership check that prevents customers from acting on each other's orders."
+---
+
+Before Nexa executes any command sent over WhatsApp or Telegram, it runs a two-step ownership check. This means every command is validated against both the sender's identity and the order they're referencing — and if either check fails, Nexa denies the request outright. This design keeps your customers' orders protected from interference, whether accidental or intentional.
+
+## The Two-Step Ownership Rule
+
+Nexa enforces two conditions before acting on any incoming command:
+
+<Steps>
+  <Step title="Phone number is verified and linked">
+    The sender's WhatsApp or Telegram number must be linked to a Perfect Panel username in your Nexa dashboard. If the number isn't recognised, Nexa treats the sender as unverified and denies the command.
+  </Step>
+  <Step title="Order belongs to that username">
+    The order referenced in the command must belong to the same Perfect Panel username that the sender's number is linked to. Even if the sender is verified, they cannot act on an order that belongs to a different account.
+  </Step>
+</Steps>
+
+Both conditions must be true simultaneously. Passing one but not the other is not enough — Nexa will still deny the command.
+
+## Why This Matters
+
+Without ownership verification, any customer who knew another customer's order ID could send commands against it — cancelling it, checking its status, or otherwise interfering. Nexa eliminates this risk by tying every command back to the sender's verified identity and confirming that the requested order actually belongs to them.
+
+This protects your customers from each other and protects you from disputes caused by unauthorised order manipulation.
+
+## The Fail-Closed Principle
+
+Nexa is designed to **fail closed**: when in doubt, it denies. If a number is unrecognised, if a lookup fails, or if the ownership check cannot be confirmed, Nexa sends a denial message to the customer rather than proceeding. No command is executed on ambiguous or incomplete information.
+
+This approach means occasional false negatives (a legitimate customer whose number hasn't been linked yet) are possible, but false positives (an unauthorised action going through) are not.
+
+## Verification Flow
+
+The following steps show exactly what happens from the moment a customer sends a command to the moment Nexa either executes or denies it.
+
+<Steps>
+  <Step title="Customer sends a command">
+    A customer sends a command via WhatsApp or Telegram — for example, requesting a status update or a cancellation for one of their orders.
+  </Step>
+  <Step title="Nexa looks up the sender's number">
+    Nexa checks whether the sender's phone number is linked to a Perfect Panel username in your customer list. If no match is found, the flow stops here and a denial message is sent.
+  </Step>
+  <Step title="Nexa checks the order owner in Perfect Panel">
+    Nexa queries Perfect Panel to confirm who owns the order referenced in the command. The owner must match the Panel username linked to the sender's number.
+  </Step>
+  <Step title="Both checks pass → command is executed">
+    If the sender's number is verified **and** the order belongs to their account, Nexa executes the command and replies with the result.
+  </Step>
+  <Step title="Either check fails → command is denied">
+    If the number is unlinked, or the order belongs to a different account, Nexa sends a denial message to the customer explaining that the request could not be processed.
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Linking Accounts" icon="link" href="/verification/linking-accounts">
+    Learn how to link a customer's WhatsApp or Telegram number to their Perfect Panel username so they can start using commands.
+  </Card>
+  <Card title="Trusted Senders" icon="shield-check" href="/verification/trusted-senders">
+    Set up a whitelist of phone numbers that receive elevated permissions, such as your own number or VIP customers.
+  </Card>
+</CardGroup>

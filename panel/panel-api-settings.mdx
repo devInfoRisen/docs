@@ -1,0 +1,65 @@
+---
+title: "Connect Perfect Panel via Nexa API Settings"
+sidebarTitle: "Panel API"
+description: "Link your Perfect Panel installation to Nexa by entering your Admin API credentials so Nexa can verify orders and execute customer commands."
+---
+
+Nexa uses Perfect Panel's Admin API to verify order ownership and execute actions — such as refills, partial refills, speed-ups, and cancellations — on behalf of your customers. Without a valid connection, Nexa cannot interact with your panel and all commands will fail. The Panel API Settings screen is where you provide the two pieces of information Nexa needs: your Perfect Panel base URL and your Admin API key.
+
+## How the Integration Works
+
+When a customer sends a command (for example, a refill request) through WhatsApp or Telegram, Nexa calls your Perfect Panel Admin API to confirm the order exists, check its status, and then trigger the requested action. This happens in real time, so the API connection must be active and valid at all times.
+
+## Configure Your Panel API Settings
+
+Follow these steps to connect Perfect Panel to Nexa.
+
+<Steps>
+  <Step title="Open Panel API Settings">
+    In the Nexa sidebar, click **Panel API Settings**. The configuration form opens with fields for your base URL and API key.
+  </Step>
+  <Step title="Enter your Perfect Panel base URL">
+    In the **Base URL** field, enter the root address of your Perfect Panel installation — for example:
+
+    ```
+    https://yourpanel.com
+    ```
+
+    Do not include a trailing slash or any path after the domain. Nexa appends the correct API endpoints automatically.
+  </Step>
+  <Step title="Enter your Perfect Panel Admin API key">
+    In the **Admin API Key** field, paste the API key from your Perfect Panel admin area. You can find this key in Perfect Panel under **Admin → API Settings**.
+  </Step>
+  <Step title="Save and test the connection">
+    Click **Save & Test**. Nexa sends a test request to your Perfect Panel installation and displays one of the following results:
+
+    | Result | Meaning |
+    |--------|---------|
+    | ✅ **Connection successful** | Your credentials are valid and Nexa is ready to process commands. |
+    | ❌ **Invalid API key** | The key was rejected by Perfect Panel. Double-check it for typos or regenerate it. |
+    | ❌ **Could not reach panel** | The base URL is unreachable. Verify the domain and that your panel is online. |
+  </Step>
+</Steps>
+
+## What Happens If the API Key Is Invalid
+
+If the saved API key becomes invalid — for example, because you regenerated it in Perfect Panel — every customer command that requires a panel action will fail with an error response. Customers will see an error message in their chat, and the failed commands will be logged in [Reports → Command History](/panel/reports#command-history) with a status of `error`. Reconnect immediately by updating the key in Panel API Settings and clicking **Save & Test** again.
+
+## Rotate Your API Key
+
+If you need to rotate your API key for security reasons, update it in Nexa as soon as you generate the new key in Perfect Panel — any gap between the two actions will cause command failures.
+
+<Steps>
+  <Step title="Generate a new key in Perfect Panel">
+    In your Perfect Panel admin area, navigate to **Admin → API Settings** and generate a new Admin API key. Copy it immediately.
+  </Step>
+  <Step title="Update the key in Nexa">
+    Open **Panel API Settings** in Nexa, clear the existing key, paste the new one, and click **Save & Test** to confirm the new key is accepted.
+  </Step>
+</Steps>
+
+## Security
+
+<Warning>
+  Your Perfect Panel Admin API key grants full administrative access to your panel — including order management, customer data, and financial records. Treat it like a password. Never share it, never commit it to version control, and never paste it into a public chat. If you suspect the key has been compromised, rotate it immediately in Perfect Panel and update Nexa right away.
+</Warning>

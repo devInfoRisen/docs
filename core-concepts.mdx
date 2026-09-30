@@ -1,0 +1,100 @@
+---
+title: "Core Concepts: Spaces, Channels, Orders, and Commands"
+sidebarTitle: "Core Concepts"
+description: "Understand the six building blocks of Nexa — Space, Channel, Customer, Order, Provider, and Command — and how they automate SMM panel support."
+---
+
+Before you dig into any specific feature, it helps to understand the six core concepts that everything in Nexa is built around. These terms appear throughout the dashboard, documentation, and the messages your customers receive, so a solid grasp of each one will make every other part of the platform easier to follow.
+
+## Spaces
+
+A **Space** is your private, isolated workspace inside Nexa. Think of it as your tenant — every setting you configure, every channel you connect, every customer you verify, and every piece of order history lives inside your Space and is completely invisible to other operators.
+
+When you log in to Nexa, you're always working inside your own Space. There is no shared data between operators.
+
+## Channels
+
+A **Channel** is a connected WhatsApp or Telegram account that your customers send messages to. Channels are the entry points for all customer commands.
+
+- **WhatsApp channels** are connected by scanning a QR code with a phone running WhatsApp (powered by Baileys under the hood).
+- **Telegram channels** are connected by supplying a bot token from @BotFather; Nexa registers the webhook automatically.
+
+You can connect multiple channels to a single Space — for example, a dedicated WhatsApp number for orders and a Telegram bot for VIP customers.
+
+## Customers
+
+A **Customer** in Nexa is a chat sender whose phone number or Telegram account has been verified against a specific Perfect Panel username. The link between a chat identity and a panel username is what Nexa's entire ownership model depends on.
+
+An unverified sender can message your channel, but Nexa will not process any command from them until their number is linked to a confirmed panel username. Once linked, every command they send is evaluated as that username.
+
+## Orders
+
+An **Order** is a Perfect Panel order that Nexa can act on. Customers reference orders by their numeric ID in commands (e.g. `refill order 4821`). Nexa calls the Perfect Panel Admin API to look up the order, confirm ownership, and then submit the requested action.
+
+The four actions Nexa can take on an order are:
+
+| Action | Command syntax | What it does |
+|---|---|---|
+| Refill | `refill order <id>` | Submits a refill request for a completed or partial order |
+| Partial | `partial order <id>` | Marks a partial delivery as acceptable and closes the order |
+| Speed up | `speed up order <id>` | Requests expedited processing from the provider |
+| Cancel | `cancel order <id>` | Cancels an eligible order and triggers a refund where applicable |
+
+## Providers
+
+A **Provider** is your upstream supplier — the service that actually fulfills the orders your customers place on your panel. Nexa can notify a provider's WhatsApp support group automatically when certain order actions are triggered, so your team doesn't have to forward requests manually.
+
+You configure providers in **Panel → Providers**, where you can map specific services or order types to the correct provider support group.
+
+## Commands
+
+A **Command** is a structured message a verified customer sends to one of your channels to trigger an action on one of their orders. Nexa parses incoming messages against command patterns, extracts the order ID, and runs the ownership verification flow before taking any action.
+
+The four supported commands are `refill`, `partial`, `speed up`, and `cancel`.
+
+<Tip>
+  Commands are case-insensitive and tolerant of minor punctuation variations. A customer can send `Refill Order 123`, `refill order 123`, or `REFILL ORDER 123` and Nexa will match all three correctly.
+</Tip>
+
+## How ownership verification ties it all together
+
+The verification flow runs every time a customer sends a command. Understanding it helps you reason about why a command might be approved or denied:
+
+<Steps>
+  <Step title="Message received">
+    A message arrives on one of your channels from a sender's number or Telegram account.
+  </Step>
+  <Step title="Sender identity check">
+    Nexa looks up the sender in your **Customers** list. If the number is not linked to a panel username, the command is denied immediately and the customer is told to contact support.
+  </Step>
+  <Step title="Order lookup">
+    Nexa calls the Perfect Panel Admin API to retrieve the order referenced by the command (e.g. order `4821`).
+  </Step>
+  <Step title="Ownership match">
+    Nexa compares the order's owner username in Perfect Panel against the panel username linked to the sender's chat number. If they don't match, the command is denied — even if both checks individually passed.
+  </Step>
+  <Step title="Action submitted">
+    Only if both checks pass does Nexa submit the requested action (refill, partial, speed up, or cancel) to Perfect Panel and reply to the customer with a confirmation.
+  </Step>
+</Steps>
+
+<Note>
+  This flow is **fail-closed** by design. Any ambiguity — unverified sender, order not found, username mismatch — results in a denial rather than an action. This means a configuration mistake causes a harmless "request denied" reply rather than an action on the wrong customer's order.
+</Note>
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Ownership & Verification" icon="shield-check" href="/verification/overview">
+    Detailed guide to linking accounts, verifying ownership, and handling edge cases.
+  </Card>
+  <Card title="Commands" icon="message-bot" href="/commands/overview">
+    Full syntax reference for all four customer commands with examples.
+  </Card>
+  <Card title="Channels" icon="satellite-dish" href="/channels/overview">
+    Step-by-step instructions for connecting WhatsApp and Telegram channels.
+  </Card>
+  <Card title="Operator Panel" icon="gauge" href="/panel/dashboard">
+    Explore the dashboard, reports, providers, broadcasts, and AI support.
+  </Card>
+</CardGroup>

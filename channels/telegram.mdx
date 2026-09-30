@@ -1,0 +1,91 @@
+---
+title: "Connect a Telegram Bot Channel to Your Nexa Space"
+sidebarTitle: "Telegram"
+description: "Create a Telegram bot via BotFather, paste the token into Nexa, and let Nexa register the webhook automatically to start processing commands."
+---
+
+Telegram Channels in Nexa are powered by the official **Telegram Bot API**. You create a bot through Telegram's own @BotFather tool, which gives you a unique bot token, and then hand that token to Nexa. Nexa immediately registers a webhook pointing to your Space so that every message a customer sends to the bot arrives in Nexa for processing — no polling, no manual webhook configuration required on your end. Customers simply open the bot in Telegram, send a command such as `refill order 123`, and Nexa handles the rest.
+
+## Step 1 — Create a Bot with BotFather
+
+<Steps>
+  <Step title="Open BotFather on Telegram">
+    In the Telegram app (mobile or desktop), search for **@BotFather** and open the verified account (blue checkmark).
+  </Step>
+  <Step title="Create a new bot">
+    Send the command `/newbot`. BotFather will ask you for a **display name** (shown in chats) and a **username** (must end in `bot`, e.g. `YourPanelSupportBot`).
+  </Step>
+  <Step title="Copy the bot token">
+    BotFather replies with a message containing your bot token in this format:
+
+    ```
+    123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ
+    ```
+
+    Copy this token — you will paste it into Nexa in the next step. Keep it private; anyone with this token can control your bot.
+  </Step>
+</Steps>
+
+## Step 2 — Add the Telegram Channel in Nexa
+
+<Steps>
+  <Step title="Open the Channels section">
+    In your Nexa Space, click **Channels** in the left sidebar.
+  </Step>
+  <Step title="Add a new Channel">
+    Click **Add Channel** in the top-right corner.
+  </Step>
+  <Step title="Select Telegram">
+    Choose **Telegram** from the list of available channel types.
+  </Step>
+  <Step title="Paste the bot token">
+    Enter a friendly name for the Channel (e.g. "Main Support Bot"), then paste the bot token you copied from BotFather into the **Bot Token** field.
+  </Step>
+  <Step title="Save and connect">
+    Click **Connect**. Nexa validates the token with the Telegram API and registers a webhook for your Space automatically. The new Channel appears in your Channels list with an **Active** status badge.
+  </Step>
+</Steps>
+
+<Tip>
+  Test the connection right away by opening the bot in Telegram and sending `/start`. If Nexa is connected correctly, the bot will respond with the default greeting configured in your Space's message templates.
+</Tip>
+
+## How Customers Interact with the Bot
+
+Once the Channel is active, customers find the bot by searching its username in Telegram and clicking **Start**. They then send commands directly in the DM conversation — for example:
+
+- `refill order 123`
+- `speed up order 456`
+- `status order 789`
+
+Nexa receives each message via the webhook, verifies the customer's ownership with Perfect Panel, executes the requested action, and replies to the customer — all within the same Telegram conversation thread.
+
+<Note>
+  Nexa processes only **direct messages** sent to the bot. Messages in group chats where the bot is a member are not processed unless your Space is explicitly configured to handle them.
+</Note>
+
+## Optional — Set Bot Commands in BotFather
+
+Telegram lets you register a list of commands that appear as suggestions when a customer types `/` in the chat. While this step is optional, it significantly improves the customer experience by surfacing available commands without them needing to guess.
+
+To set commands, send the following to @BotFather:
+
+```
+/setcommands
+```
+
+BotFather will ask which bot you want to update, then prompt you to send the command list. Enter one command per line in the format `command - description`:
+
+```
+refill - Refill an existing order
+speedup - Speed up an existing order
+status - Check the status of an order
+cancel - Cancel a pending order
+help - List all available commands
+```
+
+BotFather confirms the update immediately, and the command hints appear for all your customers the next time they type `/` in the bot chat.
+
+<Warning>
+  If you regenerate the bot token in BotFather (e.g. for security reasons), the old token becomes invalid and Nexa's webhook registration will fail. Return to the Channel settings in Nexa, delete the existing Telegram Channel, and add it again with the new token.
+</Warning>

@@ -1,0 +1,66 @@
+---
+title: 'Frequently Asked Questions About Using Nexa Automation'
+sidebarTitle: 'FAQ'
+description: 'Quick answers to the most common questions about how Nexa works, what it supports, and how to get the most out of your automation setup.'
+---
+
+If you're just getting started with Nexa or exploring what the platform can do, this page covers the questions operators ask most often. Each answer links to deeper documentation where relevant so you can go from a quick answer to a full guide without hunting around the dashboard.
+
+<AccordionGroup>
+  <Accordion title="What is Nexa and who is it for?">
+    Nexa is a SaaS automation platform built specifically for SMM panel operators. It connects your WhatsApp and Telegram channels to your panel so your customers can check order status, request refills, and get support — all through the messaging apps they already use — without you handling each message manually.
+  </Accordion>
+
+  <Accordion title="Which messaging platforms does Nexa support?">
+    Nexa currently supports **WhatsApp** and **Telegram**. You can connect one or both within a single Space and manage them from the same dashboard. Each channel operates independently, so a customer on WhatsApp and a customer on Telegram both get the full Nexa experience.
+  </Accordion>
+
+  <Accordion title="What is a Space?">
+    A Space is Nexa's top-level organizational unit — think of it as a single workspace that holds your connected channels, panel API credentials, knowledge base, and configuration. Most operators run one Space per panel. If you operate multiple panels, you can create a separate Space for each.
+  </Accordion>
+
+  <Accordion title="How does Nexa verify order ownership?">
+    When a customer sends a command, Nexa checks that the phone number they're messaging from is linked to a panel username, and that the order ID they provided belongs to that username in Perfect Panel. If either check fails, the command is denied and the customer receives an error message. This prevents customers from running commands on orders that don't belong to them.
+  </Accordion>
+
+  <Accordion title="What commands can customers send?">
+    Customers can send the following commands through your WhatsApp or Telegram bot:
+
+    | Command | What it does |
+    |---|---|
+    | `refill order <ID>` | Requests a refill for a completed order |
+    | `partial order <ID>` | Requests a partial refill for an eligible order |
+    | `speed up <ID>` | Requests a speed increase for an active order |
+    | `cancel order <ID>` | Requests cancellation of an eligible order |
+
+    All commands are subject to ownership verification before they are processed.
+  </Accordion>
+
+  <Accordion title="What happens if a customer's number isn't linked?">
+    If a customer sends a command from a phone number that hasn't been linked to a panel username, Nexa denies the command and replies with a message explaining that their account isn't linked. The customer needs to complete the account linking process before they can use any commands. You can find instructions for linking accounts in your panel's onboarding flow.
+  </Accordion>
+
+  <Accordion title="Can a customer use commands without verifying their account?">
+    No. Every command requires the customer's phone number to be verified and linked to a valid panel username. Unverified senders receive an automatic denial response. This is a security requirement — it ensures that only legitimate customers can interact with orders tied to your panel.
+  </Accordion>
+
+  <Accordion title="What is a Trusted Sender?">
+    A Trusted Sender is a contact you've manually marked as trusted in Nexa. Trusted Senders bypass certain rate-limiting and verification checks, which is useful for your own accounts or for VIP customers who need uninterrupted access. Use Trusted Senders sparingly — they represent elevated permissions within your bot.
+  </Accordion>
+
+  <Accordion title="How do I connect my Perfect Panel?">
+    Go to **Settings → Panel API** in your Nexa dashboard, enter your Perfect Panel base URL (including `https://`, without a trailing slash), and paste your Admin API key. Click **Test Connection** to confirm Nexa can reach your panel, then save. Once connected, commands your customers send are executed against your panel in real time.
+  </Accordion>
+
+  <Accordion title="Can I have multiple channels (WhatsApp + Telegram) in one Space?">
+    Yes. A single Space can have both a WhatsApp channel and a Telegram bot connected at the same time. Customers on either platform get the same commands, AI support, and knowledge base. You manage both from the same Nexa dashboard without any duplication of configuration.
+  </Accordion>
+
+  <Accordion title="What is the cancel command status?">
+    When a customer sends `cancel order <ID>`, Nexa forwards the cancellation request to Perfect Panel. The outcome depends on the order's current status in Perfect Panel — not every order is eligible for cancellation. If the order cannot be cancelled (for example, because it's already completed or too far into processing), Nexa replies to the customer explaining that the order is not eligible.
+  </Accordion>
+
+  <Accordion title="How does the AI support module work?">
+    When a customer sends a general question (anything that isn't a recognized command), Nexa routes it to the AI support module. The AI searches your knowledge base for a relevant article and, if it finds a confident match, replies automatically. If it isn't confident enough, it creates a support ticket in your dashboard so you can respond manually. You control the confidence threshold and can train the AI by adding articles to your knowledge base at any time.
+  </Accordion>
+</AccordionGroup>

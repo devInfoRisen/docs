@@ -1,0 +1,57 @@
+---
+title: "Nexa: Automate SMM Panel Support Over WhatsApp & Telegram"
+sidebarTitle: "Introduction"
+description: "Nexa removes manual support overhead for SMM operators by letting verified customers refill, cancel, and manage Perfect Panel orders directly over chat."
+---
+
+Nexa is a WhatsApp and Telegram automation platform built specifically for SMM panel operators. Instead of answering the same refill and cancellation requests by hand, you connect Nexa to your Perfect Panel, link your customers' chat numbers to their panel accounts, and let the bot handle the rest — automatically, around the clock, with every action gated behind strict ownership verification.
+
+## Who Nexa is for
+
+Nexa is designed for operators who run an SMM panel powered by Perfect Panel and receive a high volume of repetitive support requests over WhatsApp or Telegram. If your team spends hours each day manually refilling orders, processing partial requests, or chasing providers on behalf of customers, Nexa was built to solve exactly that problem.
+
+## The problem Nexa solves
+
+Every time a customer messages "please refill order 4821," someone on your team has to log in to the panel, confirm the order belongs to that customer, submit the refill, and reply. Multiply that by dozens or hundreds of requests per day and you have a significant support burden. Nexa automates this entire flow: the customer sends a structured command in chat, Nexa verifies ownership, calls the Perfect Panel Admin API, and replies with a result — no human intervention required.
+
+## Key concepts
+
+Understanding these five terms will help you navigate every part of Nexa:
+
+| Term | What it means |
+|---|---|
+| **Space** | Your isolated workspace inside Nexa. Every operator gets their own Space; settings, channels, customers, and data are all scoped to it. |
+| **Channel** | A connected WhatsApp or Telegram account that your customers message. You can have multiple channels per Space. |
+| **Customer** | A chat sender whose phone number or Telegram account has been verified against a Perfect Panel username. Unverified senders cannot trigger commands. |
+| **Order** | A Perfect Panel order the bot can act on. Customers reference orders by ID in their commands. |
+| **Provider** | Your upstream supplier. Nexa can notify a provider's WhatsApp support group automatically when an order action is taken. |
+| **Command** | A structured message a verified customer sends (`refill`, `partial`, `speed up`, or `cancel`) to trigger an action on one of their orders. |
+
+## Ownership verification — fail-closed by design
+
+<Note>
+  Nexa will **never** act on a command unless two conditions are both true: (1) the sender's chat number is linked to a confirmed panel username, and (2) that username is the owner of the referenced order. If either check fails, Nexa denies the request and notifies the customer. This fail-closed approach means a misconfigured customer record results in a harmless denial rather than an action on someone else's order.
+</Note>
+
+## Explore the major sections
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Go from zero to processing your first command in minutes.
+  </Card>
+  <Card title="Core Concepts" icon="layer-group" href="/core-concepts">
+    Deep-dive into Spaces, Channels, Customers, Orders, and Providers.
+  </Card>
+  <Card title="Channels" icon="satellite-dish" href="/channels/overview">
+    Connect WhatsApp and Telegram accounts to your Space.
+  </Card>
+  <Card title="Commands" icon="message-bot" href="/commands/overview">
+    See exactly what commands customers can send and what each one does.
+  </Card>
+  <Card title="Ownership & Verification" icon="shield-check" href="/verification/overview">
+    Learn how Nexa links chat numbers to panel usernames before acting.
+  </Card>
+  <Card title="Operator Panel" icon="gauge" href="/panel/dashboard">
+    Manage everything from the dashboard, reports, broadcasts, and AI support.
+  </Card>
+</CardGroup>

@@ -1,0 +1,84 @@
+---
+title: "Connect a WhatsApp Channel to Your Nexa Space"
+sidebarTitle: "WhatsApp"
+description: "Step-by-step guide to linking a WhatsApp number to Nexa via QR code, maintaining session stability, and setting up Support Groups for providers."
+---
+
+Nexa connects to WhatsApp using the **Baileys** library, which establishes a persistent web session tied to a real WhatsApp account. When you scan the QR code in the Nexa dashboard, your phone authenticates the session exactly as it would for WhatsApp Web — from that point on, Nexa can send and receive messages on behalf of that number without any further action from you. This makes WhatsApp one of the fastest channels to get running, requiring only a phone with WhatsApp installed and a stable internet connection.
+
+<Warning>
+  Do **not** connect your primary personal or business WhatsApp number. Automation activity can trigger WhatsApp's anti-spam systems, which may result in a temporary or permanent ban on the account. Use a **dedicated number** reserved exclusively for Nexa.
+</Warning>
+
+## Connect a WhatsApp Channel
+
+<Steps>
+  <Step title="Open the Channels section">
+    In your Nexa Space, click **Channels** in the left sidebar.
+  </Step>
+  <Step title="Add a new Channel">
+    Click **Add Channel** in the top-right corner of the Channels page.
+  </Step>
+  <Step title="Select WhatsApp">
+    Choose **WhatsApp** from the list of available channel types.
+  </Step>
+  <Step title="Scan the QR code">
+    A QR code appears on screen. On your dedicated phone, open WhatsApp, go to **Settings → Linked Devices → Link a Device**, and scan the QR code. The dashboard refreshes automatically once the scan is successful.
+  </Step>
+  <Step title="Confirm the connection">
+    Your new WhatsApp Channel appears in the Channels list with an **Active** status badge. Nexa is now receiving and processing messages sent to that number.
+  </Step>
+</Steps>
+
+<Tip>
+  Keep the phone that hosts the WhatsApp account **powered on, charged, and connected to the internet** at all times. Baileys sessions are tied to the phone's connection — extended offline periods cause the session to expire, requiring a new QR scan.
+</Tip>
+
+## Session Persistence and Reconnection
+
+Nexa stores the session credentials after the initial QR scan so that you do not need to rescan every time the server restarts. However, certain events can invalidate a session:
+
+- The phone is offline for an extended period.
+- WhatsApp logs out all linked devices remotely (this can happen after account security events).
+- The WhatsApp app on the phone is uninstalled or its data is cleared.
+
+When a session drops, the Channel's status changes to **Disconnected**. To reconnect:
+
+<Steps>
+  <Step title="Navigate to the disconnected Channel">
+    In **Channels**, locate the Channel showing a **Disconnected** badge and click it to open its detail view.
+  </Step>
+  <Step title="Initiate reconnection">
+    Click **Reconnect**. A new QR code is generated.
+  </Step>
+  <Step title="Scan with WhatsApp">
+    Open WhatsApp on your dedicated phone and scan the new QR code using **Settings → Linked Devices → Link a Device**.
+  </Step>
+</Steps>
+
+The Channel resumes **Active** status and picks up message processing immediately after a successful scan.
+
+## Support Groups
+
+A **Support Group** is a WhatsApp group chat that Nexa uses to notify providers when a customer triggers an automated action such as a refill or speed-up request. Instead of sending provider notifications as direct messages, Nexa posts them to the designated group, keeping your team informed in a shared space.
+
+### Add a Support Group
+
+<Steps>
+  <Step title="Create a WhatsApp group">
+    On your dedicated WhatsApp number, create a group chat and add the relevant provider contacts. Give it a clear name such as "Nexa Provider Notifications".
+  </Step>
+  <Step title="Open Channel settings">
+    In Nexa, go to **Channels**, open your WhatsApp Channel, and navigate to the **Support Groups** tab.
+  </Step>
+  <Step title="Add the group">
+    Click **Add Support Group**. Nexa lists the groups that the connected WhatsApp number is a member of. Select the group you created.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Nexa will now post provider notifications to that group whenever a qualifying customer command is processed.
+  </Step>
+</Steps>
+
+<Note>
+  You can add multiple Support Groups to a single WhatsApp Channel — useful if different groups serve different providers or order categories.
+</Note>
