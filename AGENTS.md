@@ -2,18 +2,18 @@
 
 ## About this project
 
-- This is the **SMM Panel AI** documentation site built on [Mintlify](https://mintlify.com)
+- This is the **SMMPANEL AI** documentation site built on [Mintlify](https://mintlify.com)
 - Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Brand strings come from `.env` → `npm run sync-brand` → `docs.json` (`name`, navbar, `variables`) and MDX body text
-- In new MDX drafts, use placeholders `__BRAND_NAME__`, `__APP_URL__`, `__SUPPORT_EMAIL__`, `__PANEL_CTA_LABEL__`, then run `npm run sync-brand`
+- Configuration lives in `docs.json` (`name`, `navbar`, `variables`, navigation, logo)
+- Brand / links: edit `docs.json` only (Mintlify has no `.env` for hosted docs)
+- Optional in MDX: `{{brandName}}`, `{{appUrl}}`, `{{supportEmail}}`, `{{supportUrl}}`, `{{panelCtaLabel}}` from `docs.json` `variables`
 - Keep the public docs **short and AI-safe**: operator how-tos only
 
 ## Terminology
 
 | Prefer | Avoid / notes |
 |--------|----------------|
-| **SMM Panel AI** / `__BRAND_NAME__` (before sync) | Perfect AI, Nexa, Perfect Bot in user-facing copy |
+| **SMMPANEL AI** | Perfect AI, Nexa, Perfect Bot in user-facing copy |
 | **Account** | Central login: My Systems, billing, team invites |
 | **System** | One support panel the owner launches |
 | **Channel** | WhatsApp, Telegram, or website widget |
@@ -24,7 +24,7 @@
 ## Style preferences
 
 - Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
+- Keep sentences concise - one idea per sentence
 - Use sentence case for headings
 - Bold for UI elements: Click **Settings**
 - Prefer Mintlify `<Steps>`, `<Note>`, `<Warning>`, `<CardGroup>`
@@ -32,8 +32,8 @@
 
 ## Content boundaries (AI-safe)
 
-Public docs answer: **how do I use __BRAND_NAME__?**  
-They must **not** answer: **how do I build or clone __BRAND_NAME__?**
+Public docs answer: **how do I use SMMPANEL AI?**  
+They must **not** answer: **how do I build or clone SMMPANEL AI?**
 
 **Keep**
 

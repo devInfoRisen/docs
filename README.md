@@ -1,17 +1,18 @@
-# SMM Panel AI documentation
+# SMMPANEL AI documentation
 
-Short operator docs for [SMM Panel AI](https://smmpanel-ai.com). Built with [Mintlify](https://mintlify.com).
+Short operator docs for [SMMPANEL AI](https://smmpanel-ai.com). Built with [Mintlify](https://mintlify.com).
 
 Public docs cover **how to use** the product — not how to rebuild it. See [AGENTS.md](./AGENTS.md) for the Keep/Cut policy.
 
 ## Brand config
 
-```bash
-cp .env.example .env
-npm run sync-brand
-```
+Set brand name, navbar links, and content variables in [`docs.json`](./docs.json):
 
-`sync-brand` updates `docs.json` and replaces MDX placeholders `__BRAND_NAME__`, `__APP_URL__`, `__SUPPORT_EMAIL__`, and `__PANEL_CTA_LABEL__`.
+- `name` — site title / navbar brand text source
+- `navbar` — Support + Open Panel links
+- `variables` — Mintlify build-time values (`brandName`, `appUrl`, `supportEmail`, `supportUrl`, `panelCtaLabel`)
+
+In MDX you can use `{{brandName}}`, `{{appUrl}}`, etc. Prefer plain text for simple copy so local `mint validate` stays clean.
 
 ## Development
 

@@ -1,22 +1,23 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
-  "name": "SMM Panel AI",
+  "name": "SMMPANEL AI",
   "colors": {
-    "primary": "#ef7025",
-    "light": "#eec9bc",
-    "dark": "#4fa1ab"
+    "primary": "#7c3aed",
+    "light": "#a78bfa",
+    "dark": "#5b21b6"
   },
   "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/icon.png",
+    "dark": "/logo/icon.png",
+    "href": "/"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hello@smmpanel-ai.com"
+        "href": "https://smmpanel-ai.com/contact"
       }
     ],
     "primary": {
@@ -26,10 +27,11 @@
     }
   },
   "variables": {
-    "brandName": "SMM Panel AI",
+    "brandName": "SMMPANEL AI",
     "appUrl": "https://smmpanel-ai.com",
     "supportEmail": "hello@smmpanel-ai.com",
-    "panelCtaLabel": "Open Panel"
+    "panelCtaLabel": "Open Panel",
+    "supportUrl": "https://smmpanel-ai.com/contact"
   },
   "navigation": {
     "tabs": [
