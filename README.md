@@ -1,55 +1,40 @@
-# Mintlify Starter Kit
+# SMM Panel AI documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Short operator docs for [SMM Panel AI](https://smmpanel-ai.com). Built with [Mintlify](https://mintlify.com).
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+Public docs cover **how to use** the product — not how to rebuild it. See [AGENTS.md](./AGENTS.md) for the Keep/Cut policy.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
+## Brand config
 
 ```bash
-npx skills add https://mintlify.com/docs
+cp .env.example .env
+npm run sync-brand
 ```
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
+`sync-brand` updates `docs.json` and replaces MDX placeholders `__BRAND_NAME__`, `__APP_URL__`, `__SUPPORT_EMAIL__`, and `__PANEL_CTA_LABEL__`.
 
 ## Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
+```bash
 npm i -g mint
+npm run dev
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Preview at `http://localhost:3000`.
 
-```
-mint dev
-```
+- `npm run validate`
+- `npm run broken-links`
 
-View your local preview at `http://localhost:3000`.
+## Pages
 
-## Publishing changes
+| Page | Purpose |
+|------|---------|
+| Home / Introduction / Quick start | Pitch and go-live |
+| Account and billing | Signup, systems, wallet, invites |
+| Connect panel / Channels / Customers / Commands | Setup |
+| Day-to-day / AI support / Security | Ops |
+| FAQ | Short fixes |
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+## Publishing
 
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app). Pushes to the default branch deploy automatically.

@@ -1,0 +1,32 @@
+---
+title: "Customer commands"
+sidebarTitle: "Commands"
+description: "Example messages customers can send for common order requests."
+---
+
+Customers can send short messages on a connected channel. Only linked owners can run order actions.
+
+## Examples
+
+| Example | What it is for |
+|---|---|
+| `refill order 123` | Ask for a refill on an order |
+| `partial order 123` | Ask about a partial order |
+| `speed up 123` | Ask to speed up an order |
+| `cancel order 123` | Cancellation (may be limited or coming soon) |
+| `status order 123` | Status check (may be limited or coming soon) |
+
+Replace `123` with a real order ID that belongs to the linked username.
+
+## What to expect
+
+- If the sender is not linked, or the order is not theirs, the bot denies the request.
+- Some actions notify your provider instead of changing the order instantly.
+- Some actions may only return an estimate until fuller automation is available on your plan.
+
+Keep customer-facing wording in **Message Templates** so replies match your brand.
+
+## Related
+
+- [Customers and verification](/customers-and-verification)
+- [Day-to-day support](/day-to-day)

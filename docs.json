@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
-  "name": "Nexa",
+  "name": "SMM Panel AI",
   "colors": {
     "primary": "#ef7025",
     "light": "#eec9bc",
@@ -16,14 +16,20 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@nexa.app"
+        "href": "mailto:hello@smmpanel-ai.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Open Panel",
-      "href": "https://app.nexa.app"
+      "href": "https://smmpanel-ai.com"
     }
+  },
+  "variables": {
+    "brandName": "SMM Panel AI",
+    "appUrl": "https://smmpanel-ai.com",
+    "supportEmail": "hello@smmpanel-ai.com",
+    "panelCtaLabel": "Open Panel"
   },
   "navigation": {
     "tabs": [
@@ -31,61 +37,30 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Get started",
             "pages": [
+              "index",
               "introduction",
-              "quickstart",
-              "core-concepts"
+              "quickstart"
             ]
           },
           {
-            "group": "Channels",
+            "group": "Guides",
             "pages": [
-              "channels/overview",
-              "channels/whatsapp",
-              "channels/telegram"
-            ]
-          },
-          {
-            "group": "Customer Commands",
-            "pages": [
-              "commands/overview",
-              "commands/refill",
-              "commands/partial",
-              "commands/speed-up",
-              "commands/cancel"
-            ]
-          },
-          {
-            "group": "Ownership & Verification",
-            "pages": [
-              "verification/overview",
-              "verification/linking-accounts",
-              "verification/trusted-senders"
-            ]
-          },
-          {
-            "group": "Operator Panel",
-            "pages": [
-              "panel/dashboard",
+              "account-and-billing",
               "panel/panel-api-settings",
-              "panel/providers",
-              "panel/broadcasts-and-autoposter",
-              "panel/reports"
+              "channels",
+              "customers-and-verification",
+              "commands",
+              "day-to-day",
+              "ai-support",
+              "security"
             ]
           },
           {
-            "group": "AI Support",
+            "group": "Help",
             "pages": [
-              "ai-support/overview",
-              "ai-support/knowledge-base"
-            ]
-          },
-          {
-            "group": "FAQ & Troubleshooting",
-            "pages": [
-              "faq/overview",
-              "faq/troubleshooting"
+              "faq"
             ]
           }
         ]

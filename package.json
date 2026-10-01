@@ -1,0 +1,11 @@
+{
+  "name": "smmpanel-ai-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync-brand": "node scripts/sync-brand.mjs",
+    "dev": "npm run sync-brand && mint dev",
+    "validate": "npm run sync-brand && mint validate",
+    "broken-links": "npm run sync-brand && mint broken-links"
+  }
+}
