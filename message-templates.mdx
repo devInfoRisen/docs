@@ -1,0 +1,74 @@
+---
+title: "Message templates and languages"
+sidebarTitle: "Message templates"
+description: "Edit bot reply text, enable or disable bot languages, and import or export translations."
+---
+
+**Message Templates** control the wording customers see for bot replies. **Bot languages** (enable/disable) live in the same area — not as a separate sidebar item.
+
+<Note>
+  Ticket staff replies are free text in **Tickets**. Bot copy belongs here. AI fixed replies are under [AI support](/ai-support).
+</Note>
+
+## Edit a template
+
+<Steps>
+  <Step title="Open Message Templates">
+    In the system sidebar under Messaging, click **Message Templates**.
+  </Step>
+
+  <Step title="Find the template">
+    Search or filter by key or language. Open the template you want to change.
+  </Step>
+
+  <Step title="Edit and save">
+    Update the message body. Use **insert placeholder** controls in the UI when you need dynamic values (order ID, username, and similar). Save to create a **Custom** override.
+  </Step>
+
+  <Step title="Reset if needed">
+    Use **Reset to default** (or **Use default**) to remove your override and restore the built-in text.
+  </Step>
+</Steps>
+
+Keep denial and error replies clear: tell the customer what to do next (link account, check order ID).
+
+## Bot languages (enable / disable)
+
+Language on/off applies to **languages**, not each template row.
+
+<Steps>
+  <Step title="Open language settings">
+    On **Message Templates**, open the gear / **Language settings** (Bot languages).
+  </Step>
+
+  <Step title="Enable or disable">
+    Turn languages on or off for the bot. Disabled languages are not offered to customers.
+  </Step>
+
+  <Step title="Ask language on start">
+    Optionally turn on **Ask language selection** so new chats can pick a language first.
+  </Step>
+
+  <Step title="Add a language">
+    Use **Add language** with a language code, display name, and native name. Mark RTL if needed. You can seed copy from English when the UI offers it.
+  </Step>
+
+  <Step title="Remove a custom language">
+    Remove languages you added if you no longer need them. Keep at least one enabled language.
+  </Step>
+</Steps>
+
+## Import and export
+
+Use **Import / Export** on Message Templates to move translations as JSON.
+
+- **Export** — download current template text for backup or editing offline.
+- **Import** — upload JSON and choose **merge** or **replace** as shown in the dialog.
+
+Review a few key templates after import before going live.
+
+## Related
+
+- [Commands](/commands)
+- [Tickets](/tickets)
+- [Day-to-day support](/day-to-day)

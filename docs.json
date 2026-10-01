@@ -54,7 +54,12 @@
               "channels",
               "customers-and-verification",
               "commands",
+              "message-templates",
               "day-to-day",
+              "inbox",
+              "tickets",
+              "broadcasts-and-alerts",
+              "providers-and-orders",
               "ai-support",
               "security"
             ]
